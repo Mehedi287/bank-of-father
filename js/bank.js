@@ -8,7 +8,7 @@ const clickBtn = document.getElementById('btn').addEventListener('click', functi
 
     const userPassword = passrodFiled.value;
     if (userEmail == 'mh0816150@gmail.com' && userPassword == 'mehedi') {
-        window.location.href = 'banking.html';
+        window.location.href = 'get-mony.html';
     }
 
 })
