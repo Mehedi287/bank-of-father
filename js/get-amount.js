@@ -1,44 +1,39 @@
+//function for get input value
+function getInputValue(idName) {
+    const inputFiled = document.getElementById(idName);
+    const nweAmount = inputFiled.value;
+    inputFiled.value = '';
+    return nweAmount;
+}
+//function for get pribus amount 
+function getpreviusbalance(idname, inputAmount) {
+    const totalDeposite = document.getElementById(idname);
+    const privusAmount = totalDeposite.innerText;
+    const totalAmount = parseFloat(privusAmount) + parseFloat(inputAmount);
+    totalDeposite.innerText = totalAmount;
+    return totalAmount;
+}
+
 document.getElementById('deposite-btn').addEventListener('click', function () {
-    // get deposite input amount
-    const depositeInput = document.getElementById('input-deposite');
-    const NewdepositeAmoun = depositeInput.value;
-    //set deposite amount 
-    const totalDeposite = document.getElementById('total-deposite');
-    const privusDepositeAmount = totalDeposite.innerText;
-    // total deposite amount added
-    const totalDepositeAmount = parseFloat(privusDepositeAmount) + parseFloat(NewdepositeAmoun);
-    totalDeposite.innerText = totalDepositeAmount;
-    // total totalBalance
+    // get input deposite 
+    const NewdepositeAmoun = getInputValue('input-deposite');
+    // get totoal deposite 
+    const privusDepositeAmount = getpreviusbalance('total-deposite', NewdepositeAmoun);
+    //total depostie balance calculate
     const totalBalance = document.getElementById('total-balance');
     const privuseTotalBalance = totalBalance.innerText;
     const nweTotalBalance = parseFloat(privuseTotalBalance) + parseFloat(NewdepositeAmoun);
     totalBalance.innerText = nweTotalBalance;
-    // clare input filed
-    depositeInput.value = '';
 })
 // widthdrow btn
 document.getElementById('withdrow-btn').addEventListener('click', function () {
-    // input withdrow
-    const inputWithdrow = document.getElementById('input-withdrow');
-    const newWithdrow = inputWithdrow.value;
-    // total privus  withdrow
-    const totalWithdrow = document.getElementById('total-withdrow');
-    const privusWithdrow = totalWithdrow.innerText;
-    // total new withdrow
-    const totalNewWithdrow = parseFloat(privusWithdrow) + parseFloat(newWithdrow);
-    // update total withdrow
-    totalWithdrow.innerText = totalNewWithdrow;
-    //calculate total balance
+    // get input withdrow
+    const newWithdrow = getInputValue('input-withdrow')
+    // get total withdrow 
+    const kolu = getpreviusbalance('total-withdrow', newWithdrow);
+    //total balance calculate
     const balanceTotal = document.getElementById('total-balance');
     const privusBanalce = balanceTotal.innerText;
-
-
     const totalNweBalance = parseFloat(privusBanalce) - parseFloat(newWithdrow);
     balanceTotal.innerText = totalNweBalance;
-    // clear input filed
-    inputWithdrow.value = '';
-
-
-
-
 })
