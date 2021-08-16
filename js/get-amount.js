@@ -13,6 +13,10 @@ function getpreviusbalance(idname, inputAmount) {
     totalDeposite.innerText = totalAmount;
     return totalAmount;
 }
+function currentBalance() {
+    const totalBalace = document.getElementById('total-balance');
+    return totalBalace.innerText;
+}
 //function for calculate total balance
 function totalBalace(totalBalance, inputAmount, add) {
     const balance = document.getElementById(totalBalance);
@@ -29,16 +33,23 @@ document.getElementById('deposite-btn').addEventListener('click', function () {
     // get input deposite 
     const NewdepositeAmoun = getInputValue('input-deposite');
     // get totoal deposite 
-    const privusDepositeAmount = getpreviusbalance('total-deposite', NewdepositeAmoun);
-    //  get total balanc 
-    const Balace = totalBalace('total-balance', NewdepositeAmoun, true);
+    if (NewdepositeAmoun > 0) {
+        const privusDepositeAmount = getpreviusbalance('total-deposite', NewdepositeAmoun);
+        //  get total balanc 
+        const Balace = totalBalace('total-balance', NewdepositeAmoun, true);
+    }
+
 })
 // clicked  widthdrow btn
 document.getElementById('withdrow-btn').addEventListener('click', function () {
     // get input withdrow
     const newWithdrow = getInputValue('input-withdrow')
-    // get total withdrow 
-    const kolu = getpreviusbalance('total-withdrow', newWithdrow);
-    //total balance calculate
-    const balance = totalBalace('total-balance', newWithdrow, false);
+    // get total withdrow
+    const currentbalance = currentBalance();
+    if (newWithdrow > 0 && newWithdrow < currentbalance) {
+        const kolu = getpreviusbalance('total-withdrow', newWithdrow);
+        //total balance calculate
+        const balance = totalBalace('total-balance', newWithdrow, false);
+    }
+
 })
